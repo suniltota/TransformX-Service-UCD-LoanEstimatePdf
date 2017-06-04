@@ -20,7 +20,7 @@ import com.actualize.loanestimate.services.LoanEstimateServices;
  *
  */
 @RestController
-@RequestMapping(value = "/actualize/transformx/documents/ucd/le")
+@RequestMapping(value = "/actualize/transformx/documents/ucd")
 public class LoanEstimatePDFAPIimpl {
 
 	private static final Logger LOG = LogManager.getLogger(LoanEstimatePDFAPIimpl.class);
@@ -34,4 +34,10 @@ public class LoanEstimatePDFAPIimpl {
         MISMODocument mismoDocument = new MISMODocument(new ByteArrayInputStream(xmldoc.getBytes("utf-8")));
         return loanEstimateServices.generateLoanEstimatePDF(mismoDocument);
     }
+	
+	 @RequestMapping(value = "/status", method = { RequestMethod.GET })
+	    public String checkStatus() throws Exception {
+	        return "The service for generating PDF for Loan Estimate is running and ready to accept your requests";
+	    }
+
 }
