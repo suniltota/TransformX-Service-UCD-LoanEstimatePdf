@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.actualize.mortgage.domainmodels.PDFResponse;
 import com.actualize.mortgage.mismodao.MISMODocument;
-import com.actualize.mortgage.services.impl.LoanEstimateServicesImpl;
+import com.actualize.mortgage.services.impl.LoanEstimatePDFServicesImpl;
 /**
  * This class is the rest controller which defines the all the APIs associated for generation of Loan Estimate PDF
  * @author sboragala
@@ -32,8 +32,8 @@ public class LoanEstimatePDFAPIimpl {
 	@RequestMapping(value = "{version}/pdf", method = { RequestMethod.POST })
     public PDFResponse loanEstimatePdf(@RequestParam String version, @RequestBody String xmldoc) throws Exception {
         MISMODocument mismoDocument = new MISMODocument(new ByteArrayInputStream(xmldoc.getBytes("utf-8")));
-        LoanEstimateServicesImpl loanEstimateServicesImpl = new LoanEstimateServicesImpl();
-        return loanEstimateServicesImpl.generateLoanEstimatePDF(mismoDocument);
+        LoanEstimatePDFServicesImpl loanEstimatePDFServicesImpl = new LoanEstimatePDFServicesImpl();
+        return loanEstimatePDFServicesImpl.generateLoanEstimatePDF(mismoDocument);
     }
 	
 	 @RequestMapping(value = "{version}/ping", method = { RequestMethod.GET })

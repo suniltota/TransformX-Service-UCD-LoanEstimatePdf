@@ -11,9 +11,9 @@ import com.actualize.mortgage.domainmodels.PDFResponse;
 import com.actualize.mortgage.leform.LoanEstimate;
 import com.actualize.mortgage.mismodao.MISMODocument;
 
-public class LoanEstimateServicesImpl {
+public class LoanEstimatePDFServicesImpl {
 
-	private static final Logger LOG = LogManager.getLogger(LoanEstimateServicesImpl.class);
+	private static final Logger LOG = LogManager.getLogger(LoanEstimatePDFServicesImpl.class);
 	
 	public PDFResponse generateLoanEstimatePDF(MISMODocument mismoDocument) throws COSVisitorException, IOException {
 		LoanEstimate leform = new LoanEstimate();
