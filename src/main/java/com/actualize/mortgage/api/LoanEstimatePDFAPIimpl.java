@@ -4,11 +4,10 @@ import java.io.ByteArrayInputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,19 +25,17 @@ public class LoanEstimatePDFAPIimpl {
 
 	private static final Logger LOG = LogManager.getLogger(LoanEstimatePDFAPIimpl.class);
 	
-	
-	
 	@ResponseBody
 	@RequestMapping(value = "{version}/pdf", method = { RequestMethod.POST })
-    public PDFResponse loanEstimatePdf(@RequestParam String version, @RequestBody String xmldoc) throws Exception {
+    public PDFResponse loanEstimatePdf(@PathVariable String version, @RequestBody String xmldoc) throws Exception {
         MISMODocument mismoDocument = new MISMODocument(new ByteArrayInputStream(xmldoc.getBytes("utf-8")));
         LoanEstimatePDFServicesImpl loanEstimatePDFServicesImpl = new LoanEstimatePDFServicesImpl();
         return loanEstimatePDFServicesImpl.generateLoanEstimatePDF(mismoDocument);
     }
 	
 	 @RequestMapping(value = "{version}/ping", method = { RequestMethod.GET })
-	    public String checkStatus(@RequestParam String version) throws Exception {
-	        return "The service for generating PDF for Loan Estimate is running and ready to accept your requests";
-	    }
+    public String checkStatus(@PathVariable String version) throws Exception {
+        return "The service for generating PDF for Loan Estimate is running and ready to accept your requests";
+    }
 
 }
