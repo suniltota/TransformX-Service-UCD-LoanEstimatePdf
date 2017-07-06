@@ -12,11 +12,11 @@ public class LateChargeRule extends MISMODataAccessObject {
 	
 	public LateChargeRule(Element element) {
 		super(element);
-		LateChargeAmount = getValueAddNS("LateChargeAmount");
-		LateChargeGracePeriodDaysCount = getValueAddNS("LateChargeGracePeriodDaysCount");
-		LateChargeMaximumAmount = getValueAddNS("LateChargeMaximumAmount");
-		LateChargeMinimumAmount = getValueAddNS("LateChargeMinimumAmount");
-		LateChargeRatePercent = getValueAddNS("LateChargeRatePercent");
-		LateChargeType = getValueAddNS("LateChargeType");
+		LateChargeAmount = getValue("gse:LateChargeAmount");
+		LateChargeGracePeriodDaysCount = getValue("gse:LateChargeGracePeriodDaysCount");
+		LateChargeMaximumAmount = getValue("gse:LateChargeMaximumAmount");
+		LateChargeMinimumAmount = getValue("gse:LateChargeMinimumAmount");
+		LateChargeRatePercent = getValue("gse:LateChargeRatePercent");
+		LateChargeType = getValue("gse:LateChargeType");
 	}
 }

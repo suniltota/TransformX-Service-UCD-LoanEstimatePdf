@@ -49,7 +49,7 @@ public class OtherConsiderationsSection implements Section {
 
 	public void draw(Page page, Deal deal) throws XPathExpressionException {
 		LoanDetail loanDetail = new LoanDetail((Element)deal.getElementAddNS("LOANS/LOAN/LOAN_DETAIL"));
-		LateChargeRule lateRule = new LateChargeRule((Element)deal.getElementAddNS("LOANS/LOAN/LATE_CHARGE/EXTENSION/OTHER/gse:LATE_CHARGE_RULES/LATE_CHARGE_RULE"));
+		LateChargeRule lateRule = new LateChargeRule((Element)deal.getElementAddNS("LOANS/LOAN/LATE_CHARGE/EXTENSION/OTHER/gse:LATE_CHARGE_RULES/gse:LATE_CHARGE_RULE"));
 		TermsOfLoan loanTerms = new TermsOfLoan((Element)deal.getElementAddNS("LOANS/LOAN/TERMS_OF_LOAN"));
 
 		// Set disclosure type
