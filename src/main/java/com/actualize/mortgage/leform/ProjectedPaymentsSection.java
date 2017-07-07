@@ -288,7 +288,9 @@ public class ProjectedPaymentsSection implements Section {
 				interestOnlyTermMonthsCount = Integer.parseInt(monthscount);
 			}
 			//int interestOnlyTermMonthsCount = Integer.parseInt(monthscount);
-			int startYear = Integer.parseInt(payment.ProjectedPaymentCalculationPeriodStartNumber);
+			int startYear = 0;
+			if(null != payment.ProjectedPaymentCalculationPeriodStartNumber && !payment.ProjectedPaymentCalculationPeriodStartNumber.isEmpty())
+				startYear = Integer.parseInt(payment.ProjectedPaymentCalculationPeriodStartNumber);
             	
 			if ((startYear-1)*12 < interestOnlyTermMonthsCount && loanDetail.InterestOnlyIndicator.equalsIgnoreCase("true"))
 				region.append(new FormattedText("only interest", TEXT_OBLIQUE));
