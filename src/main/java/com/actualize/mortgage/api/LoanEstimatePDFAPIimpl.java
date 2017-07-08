@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +33,14 @@ public class LoanEstimatePDFAPIimpl {
 	@ResponseBody
 	@RequestMapping(value = "{version}/pdf", method = { RequestMethod.POST })
     public PDFResponse loanEstimatePdf(@PathVariable String version, @RequestBody String xmldoc) throws Exception {
+		LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE MISMO XML to LE JSON");
         MISMODocument mismoDocument = new MISMODocument(new ByteArrayInputStream(xmldoc.getBytes("utf-8")));
         return loanEstimatePDFServices.generateLoanEstimatePDF(mismoDocument);
     }
 	
 	 @RequestMapping(value = "{version}/ping", method = { RequestMethod.GET })
     public String checkStatus(@PathVariable String version) throws Exception {
+		 LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE JSON to LE MISMO XML");
         return "The service for generating PDF for Loan Estimate is running and ready to accept your requests";
     }
 
