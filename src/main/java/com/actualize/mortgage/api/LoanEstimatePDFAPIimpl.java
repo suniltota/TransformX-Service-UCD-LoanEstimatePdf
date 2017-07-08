@@ -33,14 +33,14 @@ public class LoanEstimatePDFAPIimpl {
 	@ResponseBody
 	@RequestMapping(value = "{version}/pdf", method = { RequestMethod.POST })
     public PDFResponse loanEstimatePdf(@PathVariable String version, @RequestBody String xmldoc) throws Exception {
-		LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE MISMO XML to LE JSON");
+		LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE MISMO XML to LE PDF");
         MISMODocument mismoDocument = new MISMODocument(new ByteArrayInputStream(xmldoc.getBytes("utf-8")));
         return loanEstimatePDFServices.generateLoanEstimatePDF(mismoDocument);
     }
 	
 	 @RequestMapping(value = "{version}/ping", method = { RequestMethod.GET })
     public String checkStatus(@PathVariable String version) throws Exception {
-		 LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE JSON to LE MISMO XML");
+		 LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: ping LE PDF service");
         return "The service for generating PDF for Loan Estimate is running and ready to accept your requests";
     }
 
