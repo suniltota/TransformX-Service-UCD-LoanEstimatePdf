@@ -23,13 +23,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.mismodao.DocumentClass;
-import com.actualize.mortgage.mismodao.DocumentClassification;
-import com.actualize.mortgage.mismodao.LoanIdentifier;
-import com.actualize.mortgage.mismodao.MISMODocument;
-import com.actualize.mortgage.mismodao.TermsOfLoan;
-import com.actualize.mortgage.pdferector.Page;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.mismodao.DocumentClass;
+import com.actualize.mortgage.pdf.mismodao.DocumentClassification;
+import com.actualize.mortgage.pdf.mismodao.LoanIdentifier;
+import com.actualize.mortgage.pdf.mismodao.MISMODocument;
+import com.actualize.mortgage.pdf.mismodao.TermsOfLoan;
+import com.actualize.mortgage.pdf.pdferector.Page;
 
 public class LoanEstimate {
 	static public final Encoder encoder = Base64.getEncoder();

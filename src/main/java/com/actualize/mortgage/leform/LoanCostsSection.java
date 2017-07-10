@@ -2,20 +2,20 @@ package com.actualize.mortgage.leform;
 
 import org.w3c.dom.Element;
 
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.mismodao.FeeDetail;
-import com.actualize.mortgage.mismodao.Fees;
-import com.actualize.mortgage.mismodao.IntegratedDisclosureSectionSummaryDetail;
-import com.actualize.mortgage.pdferector.Border;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.Drawable;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.mismodao.FeeDetail;
+import com.actualize.mortgage.pdf.mismodao.Fees;
+import com.actualize.mortgage.pdf.mismodao.IntegratedDisclosureSectionSummaryDetail;
+import com.actualize.mortgage.pdf.pdferector.Border;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.Drawable;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 
 public class LoanCostsSection implements Section {
 	private static final Text TITLE        = new Text(Color.BLACK, 16, Typeface.CALIBRI_BOLD);

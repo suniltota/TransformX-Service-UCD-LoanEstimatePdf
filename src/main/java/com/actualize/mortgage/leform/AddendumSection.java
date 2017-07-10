@@ -2,20 +2,20 @@ package com.actualize.mortgage.leform;
 
 import java.util.List;
 
-import com.actualize.mortgage.mismodao.Address;
-import com.actualize.mortgage.mismodao.Addresses;
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.mismodao.Party;
-import com.actualize.mortgage.pdferector.Border;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
-import com.actualize.mortgage.pdferector.Drawable.Alignment.Vertical;
+import com.actualize.mortgage.pdf.mismodao.Address;
+import com.actualize.mortgage.pdf.mismodao.Addresses;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.mismodao.Party;
+import com.actualize.mortgage.pdf.pdferector.Border;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment.Vertical;
 
 public class AddendumSection implements Section {
 	private static final Text TAB_TEXT     = new Text(Color.WHITE, 11, Typeface.CALIBRI_BOLD);

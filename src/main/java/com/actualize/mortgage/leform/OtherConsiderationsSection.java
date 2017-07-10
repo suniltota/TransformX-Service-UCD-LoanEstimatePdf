@@ -4,23 +4,23 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.w3c.dom.Element;
 
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.mismodao.LateChargeRule;
-import com.actualize.mortgage.mismodao.LoanDetail;
-import com.actualize.mortgage.mismodao.TermsOfLoan;
-import com.actualize.mortgage.pdferector.Border;
-import com.actualize.mortgage.pdferector.BoxedCharacter;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Paragraph;
-import com.actualize.mortgage.pdferector.Region;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
-import com.actualize.mortgage.pdferector.Drawable.Alignment.Vertical;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.mismodao.LateChargeRule;
+import com.actualize.mortgage.pdf.mismodao.LoanDetail;
+import com.actualize.mortgage.pdf.mismodao.TermsOfLoan;
+import com.actualize.mortgage.pdf.pdferector.Border;
+import com.actualize.mortgage.pdf.pdferector.BoxedCharacter;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Paragraph;
+import com.actualize.mortgage.pdf.pdferector.Region;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment.Vertical;
 
 public class OtherConsiderationsSection implements Section {
 	private static final Text TAB_TEXT     = new Text(Color.WHITE, 11, Typeface.CALIBRI_BOLD);

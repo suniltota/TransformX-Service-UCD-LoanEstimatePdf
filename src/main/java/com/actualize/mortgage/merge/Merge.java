@@ -25,13 +25,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.actualize.mortgage.mismodao.Fee;
-import com.actualize.mortgage.mismodao.FeeDetail;
-import com.actualize.mortgage.mismodao.Fees;
-import com.actualize.mortgage.mismodao.MISMODocument;
-import com.actualize.mortgage.mismodao.PrepaidItem;
-import com.actualize.mortgage.mismodao.PrepaidItemDetail;
-import com.actualize.mortgage.mismodao.PrepaidItems;
+import com.actualize.mortgage.pdf.mismodao.Fee;
+import com.actualize.mortgage.pdf.mismodao.FeeDetail;
+import com.actualize.mortgage.pdf.mismodao.Fees;
+import com.actualize.mortgage.pdf.mismodao.MISMODocument;
+import com.actualize.mortgage.pdf.mismodao.PrepaidItem;
+import com.actualize.mortgage.pdf.mismodao.PrepaidItemDetail;
+import com.actualize.mortgage.pdf.mismodao.PrepaidItems;
 
 public class Merge {
     private static final Logger LOGGER = Logger.getLogger(Merge.class.getName());

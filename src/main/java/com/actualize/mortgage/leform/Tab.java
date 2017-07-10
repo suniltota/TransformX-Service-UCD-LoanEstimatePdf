@@ -2,9 +2,9 @@ package com.actualize.mortgage.leform;
 
 import java.io.IOException;
 
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.Drawable;
-import com.actualize.mortgage.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.Drawable;
+import com.actualize.mortgage.pdf.pdferector.Page;
 
 public class Tab extends Drawable {
 	private final Color color = Color.BLACK;

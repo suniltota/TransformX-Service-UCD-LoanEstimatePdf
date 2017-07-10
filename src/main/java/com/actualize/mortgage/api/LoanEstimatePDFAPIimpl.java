@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.actualize.mortgage.domainmodels.PDFResponse;
-import com.actualize.mortgage.mismodao.MISMODocument;
+import com.actualize.mortgage.pdf.mismodao.MISMODocument;
 import com.actualize.mortgage.services.LoanEstimatePDFServices;
 /**
  * This class is the rest controller which defines the all the APIs associated for generation of Loan Estimate PDF

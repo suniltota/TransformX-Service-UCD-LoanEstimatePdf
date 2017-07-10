@@ -1,17 +1,17 @@
 package com.actualize.mortgage.leform;
 
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.pdferector.Border;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Region;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
-import com.actualize.mortgage.pdferector.Drawable.Alignment.Vertical;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.pdferector.Border;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Region;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment.Vertical;
 
 public class ConfirmReceiptSection implements Section {
 	private static final Text TAB_TEXT     = new Text(Color.WHITE, 12, Typeface.CALIBRI_BOLD);

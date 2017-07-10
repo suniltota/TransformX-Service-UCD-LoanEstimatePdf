@@ -1,16 +1,16 @@
 package com.actualize.mortgage.leform;
 
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.pdferector.Bullet;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Paragraph;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.pdferector.Bullet;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Paragraph;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 
 public class AddendumFooterSection implements Section {
 	private static final Text TEXT         = new Text(Color.BLACK, 9, Typeface.CALIBRI);

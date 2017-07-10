@@ -4,22 +4,22 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.w3c.dom.Element;
 
-import com.actualize.mortgage.mismodao.AmortizationRule;
-import com.actualize.mortgage.mismodao.Deal;
-import com.actualize.mortgage.mismodao.InterestOnly;
-import com.actualize.mortgage.mismodao.LoanDetail;
-import com.actualize.mortgage.mismodao.PaymentRule;
-import com.actualize.mortgage.mismodao.PrincipalAndInterestPaymentLifetimeAdjustmentRule;
-import com.actualize.mortgage.mismodao.PrincipalAndInterestPaymentPerChangeAdjustmentRules;
-import com.actualize.mortgage.pdferector.Border;
-import com.actualize.mortgage.pdferector.Color;
-import com.actualize.mortgage.pdferector.FormattedText;
-import com.actualize.mortgage.pdferector.Grid;
-import com.actualize.mortgage.pdferector.Page;
-import com.actualize.mortgage.pdferector.Section;
-import com.actualize.mortgage.pdferector.Text;
-import com.actualize.mortgage.pdferector.Typeface;
-import com.actualize.mortgage.pdferector.Drawable.Alignment;
+import com.actualize.mortgage.pdf.mismodao.AmortizationRule;
+import com.actualize.mortgage.pdf.mismodao.Deal;
+import com.actualize.mortgage.pdf.mismodao.InterestOnly;
+import com.actualize.mortgage.pdf.mismodao.LoanDetail;
+import com.actualize.mortgage.pdf.mismodao.PaymentRule;
+import com.actualize.mortgage.pdf.mismodao.PrincipalAndInterestPaymentLifetimeAdjustmentRule;
+import com.actualize.mortgage.pdf.mismodao.PrincipalAndInterestPaymentPerChangeAdjustmentRules;
+import com.actualize.mortgage.pdf.pdferector.Border;
+import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.FormattedText;
+import com.actualize.mortgage.pdf.pdferector.Grid;
+import com.actualize.mortgage.pdf.pdferector.Page;
+import com.actualize.mortgage.pdf.pdferector.Section;
+import com.actualize.mortgage.pdf.pdferector.Text;
+import com.actualize.mortgage.pdf.pdferector.Typeface;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 
 
 public class APTableSection implements Section {

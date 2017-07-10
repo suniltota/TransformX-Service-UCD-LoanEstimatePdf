@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.actualize.mortgage.domainmodels.PDFResponse;
 import com.actualize.mortgage.leform.LoanEstimate;
-import com.actualize.mortgage.mismodao.MISMODocument;
+import com.actualize.mortgage.pdf.mismodao.MISMODocument;
 import com.actualize.mortgage.services.LoanEstimatePDFServices;
 @Service
 public class LoanEstimatePDFServicesImpl  implements LoanEstimatePDFServices{
