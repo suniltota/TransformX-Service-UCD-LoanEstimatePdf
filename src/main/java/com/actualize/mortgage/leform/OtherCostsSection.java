@@ -229,7 +229,6 @@ public class OtherCostsSection implements Section {
 
 		// Total closing costs (MISMO spec 9.1)
 		idSummaryDetail = new IntegratedDisclosureSectionSummaryDetail((Element)deal.getElementAddNS(idSummary + "[IntegratedDisclosureSectionType='TotalClosingCosts'][IntegratedDisclosureSubsectionType='ClosingCostsSubtotal']"));
-		System.out.println("IntegratedDisclosureSectionTotalAmount :"+idSummaryDetail.IntegratedDisclosureSectionTotalAmount);
 		if(idSummaryDetail.IntegratedDisclosureSectionTotalAmount.equals("")){
 			grid.setCell(29, 1, new FormattedText("", ROW_HEADER)).setShade(Color.LIGHT_GRAY).setAlignment(Alignment.Horizontal.RIGHT).setMargin(Alignment.Horizontal.RIGHT, rightIndent);;
 		}else {

@@ -65,6 +65,7 @@ public class LoanEstimateSection implements Section {
 		String subjectProperty = "COLLATERALS/COLLATERAL/SUBJECT_PROPERTY";
 		String propertyValuation = subjectProperty + "/PROPERTY_VALUATIONS/PROPERTY_VALUATION";
 		String salesContract = subjectProperty + "/SALES_CONTRACTS/SALES_CONTRACT";
+		String unparsedLegalDescription = deal.getValueAddNS(subjectProperty + "/LEGAL_DESCRIPTIONS/LEGAL_DESCRIPTION/UNPARSED_LEGAL_DESCRIPTIONS/UNPARSED_LEGAL_DESCRIPTION/UnparsedLegalDescription"); 
 
 		// Data containers
 		Address lenderAddress = new Address((Element)deal.getElementAddNS(lender + "/ADDRESSES/ADDRESS[AddressType='Mailing']"));
@@ -101,7 +102,7 @@ public class LoanEstimateSection implements Section {
 		left.setCell(2, 0, new FormattedText("APPLICANTS", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP);
 		left.setCell(2, 1, applicants(borrowerParties)).setAlignment(Alignment.Vertical.TOP);
 		left.setCell(3, 0, new FormattedText("PROPERTY", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP);
-		left.setCell(3, 1, propertyAddress(propertyAddress)).setAlignment(Alignment.Vertical.TOP);
+		left.setCell(3, 1, propertyAddress(propertyAddress, unparsedLegalDescription )).setAlignment(Alignment.Vertical.TOP);
 		left.setCell(4, 0, salePriceDisplay(loanTerms, salesContractDetail, propertyValuationDetail, propertyDetail)).setAlignment(Alignment.Vertical.TOP);
 		left.setCell(4, 1, new FormattedText(Formatter.ZEROTRUNCDOLLARS.format(salePrice(loanTerms, salesContractDetail, propertyValuationDetail, propertyDetail)), TEXT)).setAlignment(Alignment.Vertical.TOP);
 		
@@ -261,12 +262,14 @@ public class LoanEstimateSection implements Section {
 		return paragraph;
 	}
 	
-	public static Region propertyAddress(Address address) {
+	public static Region propertyAddress(Address address, String unparsedLegalDescription) {
 		Region region = new Region().setSpacing(-2/72f);
-		if (address.AddressLineText.equals(""))
+		if (address.AddressLineText.equals("") && unparsedLegalDescription.isEmpty())
 			region.append(new FormattedText(address.PostalCode, TEXT));
-		else
+		else if(!address.AddressLineText.isEmpty() && unparsedLegalDescription.isEmpty())
 			region.append(new FormattedText(streetAddress(address), TEXT)).append(new FormattedText(cityStateZip(address), TEXT));
+		else if(address.AddressLineText.isEmpty() && !unparsedLegalDescription.isEmpty())
+			region.append(new FormattedText(unparsedLegalDescription, TEXT)).append(new FormattedText(cityStateZip(address), TEXT));
 		return region;
 	}
 
