@@ -113,7 +113,16 @@ public class LoanEstimateSection implements Section {
 		right.setCell(0, 0, new FormattedText("LOAN TERM", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
 		right.setCell(0, 1, new FormattedText(Formatter.YEARSMONTHS.format(loanTerm(loanDetail, maturityRule, construction)), TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
 		right.setCell(1, 0, new FormattedText("PURPOSE", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
-		right.setCell(1, 1, new FormattedText(loanTerms.LoanPurposeType, TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
+		
+		if(loanTerms.LoanPurposeType.equalsIgnoreCase("Purchase"))
+			right.setCell(1, 1, new FormattedText(loanTerms.LoanPurposeType, TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
+		else if("true".equalsIgnoreCase(loanDetail.ConstructionLoanIndicator))
+			right.setCell(1, 1, new FormattedText("Construction", TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
+		else if("true".equalsIgnoreCase(idDetail.IntegratedDisclosureHomeEquityLoanIndicator))
+			right.setCell(1, 1, new FormattedText("Home Equity Loan", TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
+		else
+			right.setCell(1, 1, new FormattedText("Refinance", TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
+		
 		right.setCell(2, 0, new FormattedText("PRODUCT", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
 		right.setCell(2, 1, new FormattedText(idDetail.IntegratedDisclosureLoanProductDescription, TEXT)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);
 		right.setCell(3, 0, new FormattedText("LOAN TYPE", TEXT_BOLD)).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, -2f/72f);

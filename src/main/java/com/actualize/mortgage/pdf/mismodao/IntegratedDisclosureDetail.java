@@ -14,7 +14,7 @@ public class IntegratedDisclosureDetail extends MISMODataAccessObject{
 	public IntegratedDisclosureDetail(Element element) {
 		super(element);
 		IntegratedDisclosureIssuedDate = getValueAddNS("IntegratedDisclosureIssuedDate");
-		IntegratedDisclosureHomeEquityLoanIndicator = getValueAddNS("IntegratedDisclosureIssuedDate");
+		IntegratedDisclosureHomeEquityLoanIndicator = getValueAddNS("IntegratedDisclosureHomeEquityLoanIndicator");
 		IntegratedDisclosureLoanProductDescription = getValueAddNS("IntegratedDisclosureLoanProductDescription");
 		IntegratedDisclosureEstimatedClosingCostsExpirationDatetime = getValueAddNS("IntegratedDisclosureEstimatedClosingCostsExpirationDatetime");
 		FiveYearTotalOfPaymentsComparisonAmount = getValueAddNS("FiveYearTotalOfPaymentsComparisonAmount");
