@@ -226,7 +226,7 @@ public class LoanTermsSection implements Section {
 	}
 	
 	public static String interestRate(LoanDetail loanDetail, TermsOfLoan loanTerms, BuydownOccurences buydownOccurences, AmortizationRule amortizationRule) {
-		if ("true".equalsIgnoreCase(amortizationRule.AmortizationType))
+		if (!loanTerms.DisclosedFullyIndexedRatePercent.isEmpty())
 			return loanTerms.DisclosedFullyIndexedRatePercent;
 		if (!"".equals(loanTerms.WeightedAverageInterestRatePercent))
 			return loanTerms.WeightedAverageInterestRatePercent;
