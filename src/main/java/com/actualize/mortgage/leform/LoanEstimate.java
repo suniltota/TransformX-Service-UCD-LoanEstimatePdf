@@ -140,6 +140,7 @@ public class LoanEstimate {
 			page.addSection(new AdditionalInformationSection(page, null));
 			page.addSection(new ComparisonsSection(page, null));
 			page.addSection(new OtherConsiderationsSection(page, null));
+			if(null != documentClassification && null != documentClassification.documentClassificationDetail && "true".equalsIgnoreCase(documentClassification.documentClassificationDetail.other.DocumentSignatureRequiredIndicator))
 			page.addSection(new ConfirmReceiptSection(page, null));
 			page.addSection(new FooterSection(page, 3, loanIdentifier.LoanIdentifier));
 	

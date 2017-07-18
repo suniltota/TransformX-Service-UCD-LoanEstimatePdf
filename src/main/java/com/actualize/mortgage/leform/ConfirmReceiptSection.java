@@ -21,7 +21,6 @@ public class ConfirmReceiptSection implements Section {
 	
 	private final Grid grid;
 	
-	public boolean display = false; // TODO
 	
 	public ConfirmReceiptSection(Page page, Object object) {
 		// Create grid
@@ -54,8 +53,6 @@ public class ConfirmReceiptSection implements Section {
 	}
 
 	public void draw(Page page, Deal deal) {
-		if (!display)
-			return;
 		
 		try {
 			grid.draw(page, page.leftMargin, page.bottomMargin, 7.5f);
