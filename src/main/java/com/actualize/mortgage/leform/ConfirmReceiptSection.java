@@ -29,9 +29,9 @@ public class ConfirmReceiptSection implements Section {
 		grid = new Grid(heights.length, heights, widths.length, widths);
 
 		// Tab header
-		grid.setCell(0, 0, new FormattedText("  Confirm Receipts", TAB_TEXT)).setAlignment(Alignment.Vertical.BOTTOM).setMargin(Alignment.Vertical.BOTTOM, 6f/72f).setBackground(new Tab(1.9f));
+		grid.setCell(0, 0, new FormattedText("Confirm Receipt", TAB_TEXT)).setMargin(Alignment.Vertical.BOTTOM, 3f/72f).setMargin(Alignment.Horizontal.LEFT, 5f/72f).setBackground(new Tab(1.90f));
 		grid.setBorder(Vertical.BOTTOM, 0, border);
-
+		
 		// Confirm receipt (MISMO spec 24.0)
 		grid.setBorder(Alignment.Vertical.TOP, 1, border);
 		Region region = new Region()
