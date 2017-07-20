@@ -188,7 +188,7 @@ public class OtherCostsSection implements Section {
 		printEscrowAmount(page, grid, escrowItem, "Mortgage Insurance", 14);
 
 		// Escrow - Property Taxes
-		escrowItem = getEscrowItem(escrowItems, "PropertyTax");
+		escrowItem = getEscrowItem(escrowItems, "CountyPropertyTax");
 		printEscrowAmount(page, grid, escrowItem, "Property Taxes", 15);
 
 		// Escrow - Other
@@ -196,7 +196,7 @@ public class OtherCostsSection implements Section {
 		for (EscrowItem item : escrowItems.escrowItems) {
 			if (item.escrowItemDetail.EscrowItemType.equals("") || Formatter.doubleValue(item.escrowItemDetail.EscrowItemEstimatedTotalAmount) == 0)
 				continue;
-			else if (!item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("HomeownersInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("MortgageInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("PropertyTax")) {
+			else if (!item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("HomeownersInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("MortgageInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("CountyPropertyTax")) {
 				printEscrowAmount(page, grid, item, item.escrowItemDetail.displayName().replaceAll(" Escrow(s*)$", ""), ++line);
 			}
 		}
