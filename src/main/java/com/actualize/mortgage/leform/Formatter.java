@@ -27,6 +27,7 @@ public enum Formatter {
 	YEARSMONTHS,
 	YEARSPLUSONE,
 	ROUNDUPYEARS,
+	ROUNDUPPLUSONEYEAR,
 	INTEGERSUFFIX,		  // add the appropriate suffix e.g.st, nd, th
 	INTEGERPLUSONESUFFIX, // add the appropriate suffix e.g.st, nd, th
 	MONTH,			      // Translate MISMO month (--nn) to month name
@@ -158,6 +159,9 @@ public enum Formatter {
 			break;
 		case ROUNDUPYEARS:
 			outStr = Integer.toString((int)(doubleValue(inStr)+11)/12);
+			break;
+		case ROUNDUPPLUSONEYEAR:
+			outStr = Integer.toString((int)Math.ceil((doubleValue(inStr)+12)/12));
 			break;
 		case PHONENUMBER:
 			if (inStr.length() > 6)

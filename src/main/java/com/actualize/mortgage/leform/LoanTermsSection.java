@@ -122,7 +122,7 @@ public class LoanTermsSection implements Section {
 				.append(Bullet.BULLET)
 				.append(new FormattedText("Adjusts ", TEXT))
 				.append(new FormattedText("every " + ("1".equals(years) ? "year " : (years + " years ")), TEXT_BOLD))
-				.append(new FormattedText("starting in year " + Formatter.YEARSPLUSONE.format(interestRateLifetimeAdjustmentRule.FirstRateChangeMonthsCount), TEXT)));
+				.append(new FormattedText("starting in year " + Formatter.ROUNDUPPLUSONEYEAR.format(interestRateLifetimeAdjustmentRule.FirstRateChangeMonthsCount), TEXT)));
 			explain.append(new Paragraph()
 				.append(Bullet.BULLET)
 				.append(new FormattedText("Can go ", TEXT))
