@@ -104,7 +104,7 @@ public class LoanTermsSection implements Section {
 				.append(new FormattedText("as high as " + Formatter.DOLLARS.format(negativeAmortizationRule.NegativeAmortizationMaximumLoanBalanceAmount), TEXT_BOLD)));
 			explain.append(new Paragraph()
 				.append(Bullet.BULLET)
-				.append(new FormattedText(prefix + " increase until year " + Formatter.YEARS.format(negativeAmortizationRule.NegativeAmortizationLimitMonthsCount), TEXT)));
+				.append(new FormattedText(prefix + " increase until year " + Formatter.ROUNDUPONEYEAR.format(negativeAmortizationRule.NegativeAmortizationLimitMonthsCount), TEXT)));
 			grid.setCell(1, 3,  explain.setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, 2f/72f));
 		} else {
 			grid.setCell(1, 2, new FormattedText("NO", TEXT_BOLD_NEW).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, 2f/72f).setAlignment(Alignment.Horizontal.LEFT).setMargin(Alignment.Horizontal.LEFT, 8f/72f));
