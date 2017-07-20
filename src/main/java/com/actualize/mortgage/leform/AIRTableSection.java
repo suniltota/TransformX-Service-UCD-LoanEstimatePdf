@@ -148,7 +148,7 @@ public class AIRTableSection implements Section {
 
 		// First Change (MISMO spec 20.4)
 		if (loanDetail.InterestRateIncreaseIndicator.equalsIgnoreCase("true") && !irLifetimeRule.FirstRateChangeMonthsCount.equals(""))
-			grid.setCell(5, 1,  new FormattedText("Beginning of " + Formatter.INTEGERSUFFIX.format(irLifetimeRule.FirstRateChangeMonthsCount) + " month", TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
+			grid.setCell(5, 1,  new FormattedText("Beginning of " + Formatter.INTEGERSUFFIX.format(Integer.toString(Integer.parseInt(irLifetimeRule.FirstRateChangeMonthsCount) +1 )) + " month", TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
 		
 		// Subsequent Changes (MISMO spec 20.5)
 		if (loanDetail.InterestRateIncreaseIndicator.equalsIgnoreCase("true") && findIRrule(irChangeRules, "Subsequent") != null)
