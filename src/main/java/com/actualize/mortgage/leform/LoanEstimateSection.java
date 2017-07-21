@@ -27,6 +27,7 @@ import com.actualize.mortgage.pdf.pdferector.Border;
 import com.actualize.mortgage.pdf.pdferector.BoxedCharacter;
 import com.actualize.mortgage.pdf.pdferector.Color;
 import com.actualize.mortgage.pdf.pdferector.Drawable;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 import com.actualize.mortgage.pdf.pdferector.FormattedText;
 import com.actualize.mortgage.pdf.pdferector.Grid;
 import com.actualize.mortgage.pdf.pdferector.Page;
@@ -35,7 +36,6 @@ import com.actualize.mortgage.pdf.pdferector.Region;
 import com.actualize.mortgage.pdf.pdferector.Section;
 import com.actualize.mortgage.pdf.pdferector.Text;
 import com.actualize.mortgage.pdf.pdferector.Typeface;
-import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 
 public class LoanEstimateSection implements Section {
 	private static final Text COMPANY      = new Text(Color.LIGHT_GRAY, 26, Typeface.CALIBRI);
@@ -335,9 +335,13 @@ public class LoanEstimateSection implements Section {
 	}
 
 	private Drawable salePriceDisplay(TermsOfLoan loanTerms, SalesContractDetail salesContractDetail, PropertyValuationDetail propertyValuationDetail, PropertyDetail propertyDetail) {
-		if (!loanTerms.LoanPurposeType.equalsIgnoreCase("Purchase"))
-			return new Region().append(new FormattedText("EST.PROP.VALUE", TEXT_BOLD));
 			// propertyValuationDetail.PropertyValuationAmount.equals("") ? "Est. Prop. Value" : "Appraised", TEXT_BOLD)).append(new FormattedText("Prop. Value", TEXT_BOLD)).setSpacing(-2f/72f);
+		
+		if (!propertyValuationDetail.PropertyValuationAmount.isEmpty())
+			return new Region().append(new FormattedText("Appr. Prop. Value", TEXT_BOLD));
+		else if (!propertyDetail.PropertyEstimatedValueAmount.isEmpty())
+			return new Region().append(new FormattedText("Est. Prop. Value", TEXT_BOLD));
+		
 		return new FormattedText("SALE PRICE", TEXT_BOLD);
 	}
 
