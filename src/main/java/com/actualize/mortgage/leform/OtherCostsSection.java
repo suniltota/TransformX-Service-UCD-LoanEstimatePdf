@@ -153,7 +153,7 @@ public class OtherCostsSection implements Section {
 			grid.setCell(7, 0, new FormattedText("Prepaid Interest (   per day for   days )", TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 
 		// Prepaids - Property Taxes
-		PrepaidItem prepaidTaxes = getPrepaidItem(prepaidItems, "Property Taxes");
+		PrepaidItem prepaidTaxes = getPrepaidItem(prepaidItems, "CountyPropertyTax");
 		if (prepaidTaxes != null) {
 			grid.setCell(8, 0, new FormattedText("Property Taxes ( " + prepaidTaxes.prepaidItemDetail.PrepaidItemMonthsPaidCount + " months)", TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 			if(prepaidTaxes.prepaidItemDetail.PrepaidItemEstimatedTotalAmount.equals("0"))
