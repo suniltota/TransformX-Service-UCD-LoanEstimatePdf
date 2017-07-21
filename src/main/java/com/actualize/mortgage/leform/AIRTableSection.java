@@ -5,6 +5,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.Element;
 
 import com.actualize.mortgage.pdf.mismodao.AmortizationRule;
+import com.actualize.mortgage.pdf.mismodao.Buydown;
 import com.actualize.mortgage.pdf.mismodao.Deal;
 import com.actualize.mortgage.pdf.mismodao.IndexRule;
 import com.actualize.mortgage.pdf.mismodao.InterestRateLifetimeAdjustmentRule;
@@ -14,13 +15,13 @@ import com.actualize.mortgage.pdf.mismodao.LoanDetail;
 import com.actualize.mortgage.pdf.mismodao.TermsOfLoan;
 import com.actualize.mortgage.pdf.pdferector.Border;
 import com.actualize.mortgage.pdf.pdferector.Color;
+import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 import com.actualize.mortgage.pdf.pdferector.FormattedText;
 import com.actualize.mortgage.pdf.pdferector.Grid;
 import com.actualize.mortgage.pdf.pdferector.Page;
 import com.actualize.mortgage.pdf.pdferector.Section;
 import com.actualize.mortgage.pdf.pdferector.Text;
 import com.actualize.mortgage.pdf.pdferector.Typeface;
-import com.actualize.mortgage.pdf.pdferector.Drawable.Alignment;
 
 
 
@@ -123,6 +124,18 @@ public class AIRTableSection implements Section {
 		InterestRatePerChangeAdjustmentRules irChangeRules = new InterestRatePerChangeAdjustmentRules((Element)deal.getElementAddNS("LOANS/LOAN/ADJUSTMENT/INTEREST_RATE_ADJUSTMENT/INTEREST_RATE_PER_CHANGE_ADJUSTMENT_RULES"));
 		LoanDetail loanDetail = new LoanDetail((Element)deal.getElementAddNS("LOANS/LOAN/LOAN_DETAIL"));
 		TermsOfLoan loanTerm = new TermsOfLoan((Element)deal.getElementAddNS("LOANS/LOAN/TERMS_OF_LOAN"));
+		Buydown buydownRule = new Buydown(null, (Element)deal.getElementAddNS("LOANS/LOAN/BUYDOWN/BUYDOWN_RULE"));
+		
+		String str = "";
+		if (buydownRule.buydownRule.extension.other.buydownReflectedInNoteIndicator.equalsIgnoreCase("true")) {
+			str = buydownRule.buydownOccurences.buydownOccurences[0].BuydownInitialEffectiveInterestRatePercent;
+		} else if(!loanTerm.DisclosedFullyIndexedRatePercent.equals("")) {
+			str = loanTerm.DisclosedFullyIndexedRatePercent;
+		} else if (!loanTerm.WeightedAverageInterestRatePercent.equals("")) {
+			str = loanTerm.WeightedAverageInterestRatePercent;
+		} else {
+			str = loanTerm.NoteRatePercent;
+		}
 
 		// Is this table displayed?
 		if (!loanDetail.InterestRateIncreaseIndicator.equalsIgnoreCase("true") && !amortizationRule.AmortizationType.equalsIgnoreCase("Step") )
@@ -140,7 +153,7 @@ public class AIRTableSection implements Section {
 
 		// Initial Interest Rate (MISMO spec 20.2)
 		if (loanDetail.InterestRateIncreaseIndicator.equalsIgnoreCase("true"))
-			grid.setCell(2, 1,  new FormattedText(Formatter.PERCENT.format(loanTerm.NoteRatePercent), TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
+			grid.setCell(2, 1,  new FormattedText(Formatter.PERCENT.format(str), TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
 
 		// Minimum/Maximum Interest Rate (MISMO spec 20.3)
 		if (loanDetail.InterestRateIncreaseIndicator.equalsIgnoreCase("true"))
