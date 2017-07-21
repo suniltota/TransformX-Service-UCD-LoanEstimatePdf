@@ -59,7 +59,7 @@ public class LoanTermsSection implements Section {
 
 		// Data containers
 		AmortizationRule amortizationRule = new AmortizationRule((Element)deal.getElementAddNS(loan + "/AMORTIZATION/AMORTIZATION_RULE"));
-		BuydownOccurences buydownOccurences = new BuydownOccurences((Element)deal.getElementAddNS(loan + "/BUYDOWN/BUYDOWN_OCCURRENCES"), "[BuydownTemporarySubsidyFundingIndicator='false']");
+		BuydownOccurences buydownOccurences = new BuydownOccurences((Element)deal.getElementAddNS(loan + "/BUYDOWN/BUYDOWN_OCCURRENCES"));
 		InterestRateLifetimeAdjustmentRule interestRateLifetimeAdjustmentRule = new InterestRateLifetimeAdjustmentRule((Element)deal.getElementAddNS(loan + "/ADJUSTMENT/INTEREST_RATE_ADJUSTMENT/INTEREST_RATE_LIFETIME_ADJUSTMENT_RULE"));
 		InterestRatePerChangeAdjustmentRule interestRatePerChangeAdjustmentRule = new InterestRatePerChangeAdjustmentRule((Element)deal.getElementAddNS(loan + "/ADJUSTMENT/INTEREST_RATE_ADJUSTMENT/INTEREST_RATE_PER_CHANGE_ADJUSTMENT_RULES/INTEREST_RATE_PER_CHANGE_ADJUSTMENT_RULE[AdjustmentRuleType='First']"));
 		InterestOnly interestOnly = new InterestOnly((Element)deal.getElementAddNS(loan + "/INTEREST_ONLY"));
@@ -226,12 +226,13 @@ public class LoanTermsSection implements Section {
 	}
 	
 	public static String interestRate(LoanDetail loanDetail, TermsOfLoan loanTerms, BuydownOccurences buydownOccurences, AmortizationRule amortizationRule) {
+		if ("true".equalsIgnoreCase(loanDetail.BuydownTemporarySubsidyFundingIndicator) && buydownOccurences.buydownOccurences.length != 0)
+			return buydownOccurences.buydownOccurences[buydownOccurences.buydownOccurences.length - 1].BuydownInitialEffectiveInterestRatePercent;
 		if (!loanTerms.DisclosedFullyIndexedRatePercent.isEmpty())
 			return loanTerms.DisclosedFullyIndexedRatePercent;
 		if (!"".equals(loanTerms.WeightedAverageInterestRatePercent))
 			return loanTerms.WeightedAverageInterestRatePercent;
-		if ("true".equalsIgnoreCase(loanDetail.BuydownTemporarySubsidyFundingIndicator) && buydownOccurences.buydownOccurences.length != 0)
-			return buydownOccurences.buydownOccurences[buydownOccurences.buydownOccurences.length - 1].BuydownInitialEffectiveInterestRatePercent;
+		
 		return loanTerms.NoteRatePercent;
 	}
 	
