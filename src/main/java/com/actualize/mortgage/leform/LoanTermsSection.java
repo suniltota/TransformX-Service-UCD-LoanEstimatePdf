@@ -127,7 +127,7 @@ public class LoanTermsSection implements Section {
 				.append(Bullet.BULLET)
 				.append(new FormattedText("Can go ", TEXT))
 				.append(new FormattedText("as high as " + Formatter.PERCENT.format(interestRateLifetimeAdjustmentRule.CeilingRatePercent) + " ", TEXT_BOLD))
-				.append(new FormattedText("in year " + Formatter.YEARS.format(interestRateLifetimeAdjustmentRule.CeilingRatePercentEarliestEffectiveMonthsCount), TEXT)));
+				.append(new FormattedText("in year " + Formatter.ROUNDUPPLUSONEYEAR.format(interestRateLifetimeAdjustmentRule.CeilingRatePercentEarliestEffectiveMonthsCount), TEXT)));
 			explain.append(new Paragraph()
 				.append(Bullet.BULLET)
 				.append(new FormattedText("See ", TEXT))
@@ -149,7 +149,7 @@ public class LoanTermsSection implements Section {
 		if ("true".equalsIgnoreCase(loanDetail.PaymentIncreaseIndicator)) {
 			grid.setCell(3, 2, yes).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, 1f/72f);
 			Region explain = new Region().setSpacing(spacing);
-			String years = Formatter.YEARS.format(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount);
+			String years = Formatter.ROUNDUPONEYEAR.format(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount);
 			if (!"".equalsIgnoreCase(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount))
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
@@ -161,7 +161,7 @@ public class LoanTermsSection implements Section {
 					.append(Bullet.BULLET)
 					.append(new FormattedText("Can go ", TEXT))
 					.append(new FormattedText("as high as " + Formatter.TRUNCDOLLARS.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount) + " ", TEXT_BOLD))
-					.append(new FormattedText("in year " + Formatter.ROUNDUPYEARS.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount), TEXT)));
+					.append(new FormattedText("in year " + Formatter.ROUNDUPONEYEAR.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount), TEXT)));
 			if ("true".equals(loanDetail.InterestOnlyIndicator) && !"".equals(interestOnly.InterestOnlyTermMonthsCount)) {
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
