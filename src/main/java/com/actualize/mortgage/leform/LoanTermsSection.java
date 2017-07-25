@@ -164,14 +164,16 @@ public class LoanTermsSection implements Section {
 					.append(new FormattedText("Can go ", TEXT))
 					.append(new FormattedText("as high as " + Formatter.TRUNCDOLLARS.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount) + " ", TEXT_BOLD))
 					.append(new FormattedText("in year " + Formatter.ROUNDUPONEYEAR.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount), TEXT)));
-			if ("true".equals(loanDetail.InterestOnlyIndicator) && !"".equals(interestOnly.InterestOnlyTermMonthsCount) && "Fixed".equalsIgnoreCase(amortizationRule.AmortizationType)) {
-				explain.append(new Paragraph()
-					.append(Bullet.BULLET)
-					.append(new FormattedText("Includes ", TEXT))
-					.append(new FormattedText("only interest ", TEXT_BOLD))
-					.append(new FormattedText("and ", TEXT))
-					.append(new FormattedText("no principal ", TEXT_BOLD))
-					.append(new FormattedText("until " + Formatter.MONTHSORYEARS.format(interestOnly.InterestOnlyTermMonthsCount), TEXT)));
+			if ("true".equals(loanDetail.InterestOnlyIndicator) && !"".equals(interestOnly.InterestOnlyTermMonthsCount)) {
+				if("Fixed".equalsIgnoreCase(amortizationRule.AmortizationType)){
+					explain.append(new Paragraph()
+						.append(Bullet.BULLET)
+						.append(new FormattedText("Includes ", TEXT))
+						.append(new FormattedText("only interest ", TEXT_BOLD))
+						.append(new FormattedText("and ", TEXT))
+						.append(new FormattedText("no principal ", TEXT_BOLD))
+						.append(new FormattedText("until " + Formatter.MONTHSORYEARS.format(interestOnly.InterestOnlyTermMonthsCount), TEXT)));
+				}
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
 					.append(new FormattedText("See ", TEXT))
