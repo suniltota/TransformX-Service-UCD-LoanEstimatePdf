@@ -123,11 +123,13 @@ public class LoanTermsSection implements Section {
 				.append(new FormattedText("Adjusts ", TEXT))
 				.append(new FormattedText("every " + ("1".equals(years) ? "year " : (years + " years ")), TEXT_BOLD))
 				.append(new FormattedText("starting in year " + Formatter.ROUNDUPPLUSONEYEAR.format(interestRateLifetimeAdjustmentRule.FirstRateChangeMonthsCount), TEXT)));
+			
 			explain.append(new Paragraph()
 				.append(Bullet.BULLET)
 				.append(new FormattedText("Can go ", TEXT))
 				.append(new FormattedText("as high as " + Formatter.PERCENT.format(interestRateLifetimeAdjustmentRule.CeilingRatePercent) + " ", TEXT_BOLD))
 				.append(new FormattedText("in year " + Formatter.ROUNDUPPLUSONEYEAR.format(interestRateLifetimeAdjustmentRule.CeilingRatePercentEarliestEffectiveMonthsCount), TEXT)));
+			
 			explain.append(new Paragraph()
 				.append(Bullet.BULLET)
 				.append(new FormattedText("See ", TEXT))
@@ -150,19 +152,19 @@ public class LoanTermsSection implements Section {
 			grid.setCell(3, 2, yes).setAlignment(Alignment.Vertical.TOP).setMargin(Alignment.Vertical.TOP, 1f/72f);
 			Region explain = new Region().setSpacing(spacing);
 			String years = Formatter.ROUNDUPONEYEAR.format(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount);
-			if (!"".equalsIgnoreCase(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount))
+			if (!"".equalsIgnoreCase(principalAndInterestPaymentPerChangeAdjustmentRule.PerChangePrincipalAndInterestPaymentAdjustmentFrequencyMonthsCount) && !"Fixed".equalsIgnoreCase(amortizationRule.AmortizationType))
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
 					.append(new FormattedText("Adjusts ", TEXT))
 					.append(new FormattedText("every " + ("1".equals(years) ? "year " : (years + " years ")), TEXT_BOLD))
 					.append(new FormattedText("starting in year " + Formatter.YEARSPLUSONE.format(principalAndInterestPaymentLifetimeAdjustmentRule.FirstPrincipalAndInterestPaymentChangeMonthsCount), TEXT)));
-			if (!"".equals(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount))
+			if (!"".equals(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount) && !"Fixed".equalsIgnoreCase(amortizationRule.AmortizationType))
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
 					.append(new FormattedText("Can go ", TEXT))
 					.append(new FormattedText("as high as " + Formatter.TRUNCDOLLARS.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount) + " ", TEXT_BOLD))
 					.append(new FormattedText("in year " + Formatter.ROUNDUPONEYEAR.format(principalAndInterestPaymentLifetimeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount), TEXT)));
-			if ("true".equals(loanDetail.InterestOnlyIndicator) && !"".equals(interestOnly.InterestOnlyTermMonthsCount)) {
+			if ("true".equals(loanDetail.InterestOnlyIndicator) && !"".equals(interestOnly.InterestOnlyTermMonthsCount) && "Fixed".equalsIgnoreCase(amortizationRule.AmortizationType)) {
 				explain.append(new Paragraph()
 					.append(Bullet.BULLET)
 					.append(new FormattedText("Includes ", TEXT))
