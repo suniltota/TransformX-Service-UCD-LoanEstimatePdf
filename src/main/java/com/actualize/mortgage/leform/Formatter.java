@@ -41,7 +41,7 @@ public enum Formatter {
 	private static NumberFormat     currencyFormatter   = NumberFormat.getCurrencyInstance();
 	private static NumberFormat     numberFormatter     = NumberFormat.getInstance();
 	private static DateFormat       inputDate           = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-	private static DateFormat       inputDateTime       = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'", Locale.ENGLISH);
+	private static DateFormat       inputDateTime       = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
 	private static SimpleDateFormat outputDate          = new SimpleDateFormat("m/dd/yyyy");
 	private static SimpleDateFormat outputDateTime      = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm a");
 	private static SimpleDateFormat outputTime          = new SimpleDateFormat("h:mm a");
