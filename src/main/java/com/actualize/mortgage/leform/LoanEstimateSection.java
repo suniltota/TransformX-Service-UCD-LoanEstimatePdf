@@ -273,11 +273,9 @@ public class LoanEstimateSection implements Section {
 	
 	public static Region propertyAddress(Address address, String unparsedLegalDescription) {
 		Region region = new Region().setSpacing(-2/72f);
-		if (address.AddressLineText.equals("") && unparsedLegalDescription.isEmpty())
-			region.append(new FormattedText(address.PostalCode, TEXT));
-		else if(!address.AddressLineText.isEmpty() && unparsedLegalDescription.isEmpty())
+		if (unparsedLegalDescription.isEmpty())
 			region.append(new FormattedText(streetAddress(address), TEXT)).append(new FormattedText(cityStateZip(address), TEXT));
-		else if(address.AddressLineText.isEmpty() && !unparsedLegalDescription.isEmpty())
+		else
 			region.append(new FormattedText(unparsedLegalDescription, TEXT)).append(new FormattedText(cityStateZip(address), TEXT));
 		return region;
 	}
