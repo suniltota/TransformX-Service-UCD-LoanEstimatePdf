@@ -192,8 +192,15 @@ public class LoanEstimateSection implements Section {
 			str += address.StateCode;
 		}
 		if (!address.PostalCode.equals("")) {
+			String code = address.PostalCode;
+			
+			if (address.PostalCode.length() > 5)
+				code = address.PostalCode.substring(0, 5) + "-" + address.PostalCode.substring(5);
+			else
+				code = address.PostalCode;
+			
 			if (!str.equals("")) str += " ";
-			str += address.PostalCode;
+			str += code;
 		}
 		return str;
 	}
