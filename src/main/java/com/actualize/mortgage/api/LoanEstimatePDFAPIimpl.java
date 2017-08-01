@@ -33,7 +33,7 @@ public class LoanEstimatePDFAPIimpl {
 	@ResponseBody
 	@RequestMapping(value = "{version}/pdf", method = { RequestMethod.POST })
     public PDFResponse loanEstimatePdf(@PathVariable String version, @RequestBody String xmldoc) throws Exception {
-		if(null != SecurityContextHolder.getContext())
+		if(null != SecurityContextHolder.getContext().getAuthentication())
 			LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: LE MISMO XML to LE PDF");
 		else
 			LOG.info("user used Service: LE MISMO XML to LE PDF");
@@ -43,7 +43,7 @@ public class LoanEstimatePDFAPIimpl {
 	
 	 @RequestMapping(value = "{version}/ping", method = { RequestMethod.GET })
     public String checkStatus(@PathVariable String version) throws Exception {
-		 if(null != SecurityContextHolder.getContext())
+		 if(null != SecurityContextHolder.getContext().getAuthentication())
 			 LOG.info("user "+SecurityContextHolder.getContext().getAuthentication().getName()+" used Service: ping LE PDF service");
 		 else
 			 LOG.info("user used Service: ping LE PDF service");
