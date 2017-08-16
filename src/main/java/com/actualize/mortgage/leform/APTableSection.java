@@ -132,7 +132,7 @@ public class APTableSection implements Section {
 		// Seasonal Payments (MISMO spec 19.4)
 		if (loanDetail.SeasonalPaymentFeatureIndicator.equalsIgnoreCase("true")) {
 			grid.setCell(4, 1, Yes);
-			grid.setCell(4, 2,  new FormattedText("from " + paymentRule.SeasonalPaymentPeriodStartMonth + " to " + paymentRule.SeasonalPaymentPeriodEndMonth + " each year", TEXT));
+			grid.setCell(4, 2,  new FormattedText("from " +Formatter.MONTH.format(paymentRule.SeasonalPaymentPeriodStartMonth) + " to " + Formatter.MONTH.format(paymentRule.SeasonalPaymentPeriodEndMonth) + " each year", TEXT));
 		} else
 			grid.setCell(4, 1, No);			
 		
