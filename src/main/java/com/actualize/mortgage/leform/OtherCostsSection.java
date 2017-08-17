@@ -169,7 +169,7 @@ public class OtherCostsSection implements Section {
 			if (item.prepaidItemDetail.PrepaidItemType.equals("") || Formatter.doubleValue(item.prepaidItemDetail.PrepaidItemEstimatedTotalAmount) == 0)
 				continue;
 			else if (!item.prepaidItemDetail.PrepaidItemType.equalsIgnoreCase("HomeownersInsurancePremium") && !item.prepaidItemDetail.PrepaidItemType.equalsIgnoreCase("MortgageInsurancePremium") && !item.prepaidItemDetail.PrepaidItemType.equalsIgnoreCase("PrepaidInterest") && item!=prepaidTaxes) {
-				grid.setCell(++line, 0, new FormattedText(item.prepaidItemDetail.displayName() + " ( " + item.prepaidItemDetail.PrepaidItemMonthsPaidCount + " months)", TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
+				grid.setCell(++line, 0, new FormattedText(Formatter.CAMEL.format(item.prepaidItemDetail.displayName()) + " ( " + item.prepaidItemDetail.PrepaidItemMonthsPaidCount + " months)", TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 				grid.setCell(line, 1, new FormattedText(Formatter.TRUNCDOLLARS.format(item.prepaidItemDetail.PrepaidItemEstimatedTotalAmount), TEXT)).setAlignment(Alignment.Horizontal.RIGHT).setMargin(Alignment.Horizontal.RIGHT, rightIndent);
 			}
 		}
@@ -197,7 +197,7 @@ public class OtherCostsSection implements Section {
 			if (item.escrowItemDetail.EscrowItemType.equals("") || Formatter.doubleValue(item.escrowItemDetail.EscrowItemEstimatedTotalAmount) == 0)
 				continue;
 			else if (!item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("HomeownersInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("MortgageInsurance") && !item.escrowItemDetail.EscrowItemType.equalsIgnoreCase("CountyPropertyTax")) {
-				printEscrowAmount(page, grid, item, item.escrowItemDetail.displayName().replaceAll(" Escrow(s*)$", ""), ++line);
+				printEscrowAmount(page, grid, item, Formatter.CAMEL.format(item.escrowItemDetail.displayName().replaceAll(" Escrow(s*)$", "")), ++line);
 			}
 		}
 
@@ -213,11 +213,14 @@ public class OtherCostsSection implements Section {
 		Fees fees = new Fees((Element)deal.getElementAddNS(fee), "[FEE_DETAIL/IntegratedDisclosureSectionType='OtherCosts']");
 		for (int i = 0; i < fees.fees.length; i++) {
 			if (fees.fees[i] != null) {
+				String displayLabel = Formatter.CAMEL.format(fees.fees[i].feeDetail.displayName());
+				if("true".equalsIgnoreCase(fees.fees[i].feeDetail.OptionalCostIndicator))
+					displayLabel += " ( Optional)";
 				if(fees.fees[i].feeDetail.FeeEstimatedTotalAmount.equals("0")){
-					grid.setCell(21+i, 0, new FormattedText(fees.fees[i].feeDetail.displayName(), TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
+					grid.setCell(21+i, 0, new FormattedText(displayLabel, TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 					grid.setCell(21+i, 1, new FormattedText("", TEXT)).setAlignment(Alignment.Horizontal.RIGHT).setMargin(Alignment.Horizontal.RIGHT, rightIndent);
 				} else{
-					grid.setCell(21+i, 0, new FormattedText(fees.fees[i].feeDetail.displayName(), TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
+					grid.setCell(21+i, 0, new FormattedText(displayLabel, TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 					grid.setCell(21+i, 1, new FormattedText(Formatter.TRUNCDOLLARS.format(fees.fees[i].feeDetail.FeeEstimatedTotalAmount), TEXT)).setAlignment(Alignment.Horizontal.RIGHT).setMargin(Alignment.Horizontal.RIGHT, rightIndent);		
 				}
 			}
