@@ -10,6 +10,7 @@ public class PaymentRule extends MISMODataAccessObject {
 	public final String PaymentOptionIndicator;
 	public final String SeasonalPaymentPeriodEndMonth;
 	public final String SeasonalPaymentPeriodStartMonth;
+	public final Other other;
 	
 	public PaymentRule(Element element) {
 		super(element);
@@ -20,5 +21,6 @@ public class PaymentRule extends MISMODataAccessObject {
 		PaymentOptionIndicator = getValueAddNS("PaymentOptionIndicator");
 		SeasonalPaymentPeriodEndMonth = getValueAddNS("SeasonalPaymentPeriodEndMonth");
 		SeasonalPaymentPeriodStartMonth = getValueAddNS("SeasonalPaymentPeriodStartMonth");
+		other = new Other((Element)getElementAddNS("EXTENSION/OTHER"));
 	}
 }

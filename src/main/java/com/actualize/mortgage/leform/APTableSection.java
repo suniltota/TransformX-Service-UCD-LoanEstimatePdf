@@ -98,11 +98,14 @@ public class APTableSection implements Section {
 	public void draw(Page page, Deal deal) throws XPathExpressionException {
 		// MISMO UCD data
 		LoanDetail loanDetail = new LoanDetail((Element)deal.getElementAddNS("LOANS/LOAN/LOAN_DETAIL"));
-		if (!loanDetail.PaymentIncreaseIndicator.equalsIgnoreCase("true") || !loanDetail.InterestOnlyIndicator.equalsIgnoreCase("true"))
-			return;
-		AmortizationRule amortizationRule = new AmortizationRule((Element)deal.getElementAddNS("LOANS/LOAN/AMORTIZATION/AMORTIZATION_RULE"));
-		InterestOnly interestOnly = new InterestOnly((Element)deal.getElementAddNS("LOANS/LOAN/INTEREST_ONLY"));
 		PaymentRule paymentRule = new PaymentRule((Element)deal.getElementAddNS("LOANS/LOAN/PAYMENT/PAYMENT_RULE"));
+		AmortizationRule amortizationRule = new AmortizationRule((Element)deal.getElementAddNS("LOANS/LOAN/AMORTIZATION/AMORTIZATION_RULE"));
+		boolean viewApTable = false;
+		if (loanDetail.PaymentIncreaseIndicator.equalsIgnoreCase("true") || loanDetail.InterestOnlyIndicator.equalsIgnoreCase("true") || paymentRule.PaymentOptionIndicator.equalsIgnoreCase("true") || loanDetail.SeasonalPaymentFeatureIndicator.equalsIgnoreCase("true") || !paymentRule.other.totalStepPaymentCount.isEmpty())
+			viewApTable = true;
+		if(!viewApTable)
+			return ;
+		InterestOnly interestOnly = new InterestOnly((Element)deal.getElementAddNS("LOANS/LOAN/INTEREST_ONLY"));
 		PrincipalAndInterestPaymentLifetimeAdjustmentRule lifeAdjustmentRule =  new PrincipalAndInterestPaymentLifetimeAdjustmentRule((Element)deal.getElementAddNS("LOANS/LOAN/ADJUSTMENT/PRINCIPAL_AND_INTEREST_PAYMENT_ADJUSTMENT/PRINCIPAL_AND_INTEREST_PAYMENT_LIFETIME_ADJUSTMENT_RULE"));;
 		PrincipalAndInterestPaymentPerChangeAdjustmentRules perAdjustmentRules = new PrincipalAndInterestPaymentPerChangeAdjustmentRules((Element)deal.getElementAddNS("LOANS/LOAN/ADJUSTMENT/PRINCIPAL_AND_INTEREST_PAYMENT_ADJUSTMENT/PRINCIPAL_AND_INTEREST_PAYMENT_PER_CHANGE_ADJUSTMENT_RULES"));
 
@@ -116,16 +119,14 @@ public class APTableSection implements Section {
 		// Optional Payments (MISMO spec 19.2)
 		if (paymentRule.PaymentOptionIndicator.equalsIgnoreCase("true")) {
 			grid.setCell(2, 1, Yes);
-			grid.setCell(2, 2,  new FormattedText("for your first " + "TBD" + " payments", TEXT));
+			grid.setCell(2, 2,  new FormattedText("for your first " + paymentRule.other.totalOptionalPaymentCount + " payments", TEXT));
 		} else
 			grid.setCell(2, 1, No);			
 		
 		// Step Payments (MISMO spec 19.3)
-		if (amortizationRule.AmortizationType.equalsIgnoreCase("GPM")
-				|| amortizationRule.AmortizationType.equalsIgnoreCase("GraduatedPaymentARM")
-				|| amortizationRule.AmortizationType.equalsIgnoreCase("Step")) {
+		if (!paymentRule.other.totalStepPaymentCount.isEmpty()) {
 			grid.setCell(3, 1, Yes);
-			grid.setCell(3, 2,  new FormattedText("for your first " + "TBD" + " payments", TEXT));
+			grid.setCell(3, 2,  new FormattedText("for your first " + paymentRule.other.totalStepPaymentCount + " payments", TEXT));
 		} else
 			grid.setCell(3, 1, No);			
 		
