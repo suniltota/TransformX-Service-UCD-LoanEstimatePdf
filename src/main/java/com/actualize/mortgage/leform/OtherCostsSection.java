@@ -215,7 +215,7 @@ public class OtherCostsSection implements Section {
 			if (fees.fees[i] != null) {
 				String displayLabel = Formatter.CAMEL.format(fees.fees[i].feeDetail.displayName());
 				if("true".equalsIgnoreCase(fees.fees[i].feeDetail.OptionalCostIndicator))
-					displayLabel += " ( Optional)";
+					displayLabel += " (Optional)";
 				if(fees.fees[i].feeDetail.FeeEstimatedTotalAmount.equals("0")){
 					grid.setCell(21+i, 0, new FormattedText(displayLabel, TEXT)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 					grid.setCell(21+i, 1, new FormattedText("", TEXT)).setAlignment(Alignment.Horizontal.RIGHT).setMargin(Alignment.Horizontal.RIGHT, rightIndent);
