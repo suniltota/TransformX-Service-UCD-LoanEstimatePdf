@@ -139,21 +139,29 @@ public class APTableSection implements Section {
 		
 		// Principal and Interest Payments (MISMO spec 19.5)
 		String pmtFrequency = paymentRule.PaymentFrequencyType;
+		String paymentChangeMonthCount = "";
+		String perAdjustmentRule = ""; 
 		if ("".equals(pmtFrequency))
 			pmtFrequency = "Monthly";
 		grid.setCell(5, 0, new FormattedText(pmtFrequency + " Principal and Interest Payments", TEXT_BOLD)).setMargin(Alignment.Horizontal.LEFT, leftIndent);
 		
 		// First Change/Amount (MISMO spec 19.6)
-		if (perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules.length > 0) {
+ 		if (perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules.length > 0) {
 			String min = perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules[0].PerChangeMinimumPrincipalAndInterestPaymentAmount;
 			String max = perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules[0].PerChangeMaximumPrincipalAndInterestPaymentAmount;
 			if ("".equals(min) || "0".equals(min))
 				min = max;
-			String str = Formatter.TRUNCDOLLARS.format(min);
+			 perAdjustmentRule = Formatter.TRUNCDOLLARS.format(min);
 			if (!max.equals(min))
-				str = str + " - " + Formatter.TRUNCDOLLARS.format(max);
-			grid.setCell(6, 2,  new FormattedText(str + " at " + Formatter.INTEGERSUFFIX.format(lifeAdjustmentRule.FirstPrincipalAndInterestPaymentChangeMonthsCount) + " payment", TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
+				perAdjustmentRule = perAdjustmentRule + " - " + Formatter.TRUNCDOLLARS.format(max);
+			paymentChangeMonthCount = Formatter.INTEGERSUFFIX.format(lifeAdjustmentRule.FirstPrincipalAndInterestPaymentChangeMonthsCount);
+				
+			
 		}
+ 		if("Fixed".equalsIgnoreCase(amortizationRule.AmortizationType))
+			paymentChangeMonthCount = Formatter.INTEGERPLUSONESUFFIX.format(interestOnly.InterestOnlyTermMonthsCount);
+ 		if(!paymentChangeMonthCount.isEmpty())
+ 		grid.setCell(6, 2,  new FormattedText(perAdjustmentRule + " at " + paymentChangeMonthCount + " payment", TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
 		
 		// Subsequent Changes (MISMO spec 19.7)
 		if (perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules.length > 1) {
@@ -162,9 +170,18 @@ public class APTableSection implements Section {
 		}
 		
 		// Maximum Payment (MISMO spec 19.8)
-		grid.setCell(8, 2,  new FormattedText(Formatter.TRUNCDOLLARS.format(lifeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount)
+		String maximumAmount = lifeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmount;
+		String paymentMaximumAmountEarliestEffectiveMonthsCount = Formatter.INTEGERSUFFIX.format(lifeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount);
+		if("Fixed".equalsIgnoreCase(amortizationRule.AmortizationType))
+		{
+			maximumAmount = perAdjustmentRules.principalAndInterestPaymentPerChangeAdjustmentRules[0].PerChangeMaximumPrincipalAndInterestPaymentAmount;
+			paymentMaximumAmountEarliestEffectiveMonthsCount = paymentChangeMonthCount;
+		}
+			
+		
+		grid.setCell(8, 2,  new FormattedText(Formatter.TRUNCDOLLARS.format(maximumAmount)
 					+ " starting at "
-					+ Formatter.INTEGERSUFFIX.format(lifeAdjustmentRule.PrincipalAndInterestPaymentMaximumAmountEarliestEffectiveMonthsCount)
+					+ paymentMaximumAmountEarliestEffectiveMonthsCount
 					+ " payment", TEXT)).setAlignment(Alignment.Horizontal.RIGHT);
 		
 		try {
